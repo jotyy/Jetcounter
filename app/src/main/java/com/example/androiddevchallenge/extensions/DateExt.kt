@@ -18,10 +18,12 @@ package com.example.androiddevchallenge.extensions
 import kotlin.math.floor
 
 /**
- * Extension method to provide Date related functions.
+ * Extension method to provide Date remaining calculate functions.
  */
-fun Long.days() = floor((this / (24 * 3600 * 1000)).toDouble())
-fun Long.hours() = floor((this % (24 * 3600 * 1000) / (3600 * 1000)).toDouble())
-fun Long.minutes() = floor(((this % (24 * 3600 * 1000) % (3600 * 1000)) / (60 * 1000)).toDouble())
-fun Long.seconds() =
+fun Long.remainingDays() = floor((this / (24 * 3600 * 1000)).toDouble())
+fun Long.remainingHours() = floor((this % (24 * 3600 * 1000) / (3600 * 1000)).toDouble())
+fun Long.remainingMinutes() =
+    floor(((this % (24 * 3600 * 1000) % (3600 * 1000)) / (60 * 1000)).toDouble())
+
+fun Long.remainingSeconds() =
     floor((((this % (24 * 3600 * 1000) % (3600 * 1000)) % (60 * 1000)) / 1000).toDouble())

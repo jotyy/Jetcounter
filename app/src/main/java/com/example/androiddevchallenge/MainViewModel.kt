@@ -18,10 +18,10 @@ package com.example.androiddevchallenge
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.androiddevchallenge.extensions.days
-import com.example.androiddevchallenge.extensions.hours
-import com.example.androiddevchallenge.extensions.minutes
-import com.example.androiddevchallenge.extensions.seconds
+import com.example.androiddevchallenge.extensions.remainingDays
+import com.example.androiddevchallenge.extensions.remainingHours
+import com.example.androiddevchallenge.extensions.remainingMinutes
+import com.example.androiddevchallenge.extensions.remainingSeconds
 import java.util.Calendar
 import java.util.Timer
 import java.util.TimerTask
@@ -55,11 +55,11 @@ class MainViewModel : ViewModel() {
         val timerTask = object : TimerTask() {
             override fun run() {
                 val interval = birthDay.timeInMillis - System.currentTimeMillis()
-                _days.postValue(interval.days().roundToInt().toString())
+                _days.postValue(interval.remainingDays().roundToInt().toString())
                 _daysChanged.postValue(true)
-                _hours.postValue(interval.hours().roundToInt().toString())
-                _minutes.postValue(interval.minutes().roundToInt().toString())
-                _seconds.postValue(interval.seconds().roundToInt().toString())
+                _hours.postValue(interval.remainingHours().roundToInt().toString())
+                _minutes.postValue(interval.remainingMinutes().roundToInt().toString())
+                _seconds.postValue(interval.remainingSeconds().roundToInt().toString())
             }
         }
         Timer().schedule(timerTask, 0, COUNTDOWN_INTERVAL)
